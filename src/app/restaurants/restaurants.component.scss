@@ -11,6 +11,13 @@
     border-color: var(--stroke);
     border-radius: 10px;
     width: 30%;
+    height: fit-content;
+    overflow: hidden;
+
+    img {
+        margin-top: -30px;
+        margin-right: -30px;
+    }
 }
 
 .fieldgroup {
@@ -61,6 +68,7 @@
     margin-right: 1rem;
     border: 1px solid var(--green);
     border-radius: 50%;
+    padding-right: 5px;
 
     // Arrow inside button
     i {
@@ -72,6 +80,11 @@
         -webkit-transform: rotate(-45deg);
         align-self: center;
     }
+}
+
+.closed {
+    background-color: #ffffff54;
+    z-index: 10;
 }
 
 h2 {

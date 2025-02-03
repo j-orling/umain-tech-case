@@ -10,14 +10,15 @@
                     <p *ngIf="!isOpen(restaurant)">Closed</p>
                 </div>
                 <div class="delivery-time" *ngIf="isOpen(restaurant)">
-                    <p>{{restaurant.delivery_time_minutes}} - {{restaurant.delivery_time_minutes + 5}}min</p>
+                    <p *ngIf="restaurant.delivery_time_minutes < 60">{{restaurant.delivery_time_minutes}} - {{restaurant.delivery_time_minutes + 5}}min</p>
+                    <p *ngIf="restaurant.delivery_time_minutes >= 60">1 hour</p>
                 </div>
             </div>
             <img src="https://work-test-web-2024-eze6j4scpq-lz.a.run.app{{restaurant.image_url}}">
         </div>
         <div class="fieldgroup">
             <h2>{{restaurant.name}}</h2>
-            <button class="restaurant-details" *ngIf="isOpen(restaurant)"><i></i></button>
+            <button class="restaurant-details" *ngIf="isOpen(restaurant)">></button>
         </div>
         
     </div>

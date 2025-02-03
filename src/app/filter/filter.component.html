@@ -2,15 +2,18 @@
     <h1>Filter</h1>
 
     <p class="subtitle">FOOD CATEGORY</p>
-    <div *ngFor="let filter of filters">
-        <button>{{filter.name}}</button>
+    <div class="filters">
+        <button (click)="updateFilter(filter)" *ngFor="let filter of filters" [class.active]="this.activeFilters.includes(filter)">{{filter.name}}</button>
     </div>
 
     <p class="subtitle">DELIVERY TIME</p>
+    <div class="filters">
+        <button *ngFor="let time of deliveryTimes">{{time}}</button>
+    </div>
 
     <p class="subtitle">PRICE RANGE</p>
-    <div *ngFor="let range of ranges">
-        <button>{{range.range}}</button>
+    <div class="filters">
+        <button *ngFor="let range of ranges">{{range.range}}</button>
     </div>
     
 </div>

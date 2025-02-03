@@ -1,12 +1,12 @@
 .layout {
     display: flex;
     flex-direction: row;
-    gap: 10%;
+    justify-content: space-around;
 }
 
-.filter {
-    width: 25%;
-    min-width: 25%;
+.filters {
+    width: 15%;
+    min-width: 15%;
 }
 
 .restaurants {

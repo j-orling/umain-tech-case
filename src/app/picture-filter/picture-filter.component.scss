@@ -1,0 +1,30 @@
+.main-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.main-container::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-banner {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border: 1px solid var(--stroke);
+    border-radius: 10px;
+    width: 15%;
+    cursor: pointer;
+
+    h3 {
+        margin-left: 1rem;
+    }
+}
+
+img {
+    width: 100px;
+}
