@@ -1,0 +1,19 @@
+.main-container {
+    padding: 1rem;
+    padding-left: 2rem;
+    width: 100%;
+    border: 1px solid;
+    border-color: var(--stroke);
+    border-radius: 10px;
+    background-color: white;
+}
+
+button {
+    background-color: white;
+    padding: 0.5rem;
+    border: 1px solid;
+    border-color: var(--stroke);
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 5px;
+}

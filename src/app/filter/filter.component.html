@@ -1,0 +1,16 @@
+<div class="main-container">
+    <h1>Filter</h1>
+
+    <p class="subtitle">FOOD CATEGORY</p>
+    <div *ngFor="let filter of filters">
+        <button>{{filter.name}}</button>
+    </div>
+
+    <p class="subtitle">DELIVERY TIME</p>
+
+    <p class="subtitle">PRICE RANGE</p>
+    <div *ngFor="let range of ranges">
+        <button>{{range.range}}</button>
+    </div>
+    
+</div>

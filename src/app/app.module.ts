@@ -3,14 +3,26 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FilterComponent } from './filter/filter.component';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { HttpClientModule } from'@angular/common/http';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { PictureFilterComponent } from './picture-filter/picture-filter.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FilterComponent,
+    HomeComponent,
+    HeaderComponent,
+    RestaurantsComponent,
+    PictureFilterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,24 @@
+<h1>Restaurants</h1>
+
+<div class="restaurant-list">
+    <div *ngFor="let restaurant of restaurants" class="restaurant">
+        <div class="fieldgroup">
+            <div class="quick-info">
+                <div class="open-status">
+                    <span *ngIf="isOpen(restaurant)" class="dot"></span>
+                    <p *ngIf="isOpen(restaurant)">Open</p>
+                    <p *ngIf="!isOpen(restaurant)">Closed</p>
+                </div>
+                <div class="delivery-time" *ngIf="isOpen(restaurant)">
+                    <p>{{restaurant.delivery_time_minutes}} - {{restaurant.delivery_time_minutes + 5}}min</p>
+                </div>
+            </div>
+            <img src="https://work-test-web-2024-eze6j4scpq-lz.a.run.app{{restaurant.image_url}}">
+        </div>
+        <div class="fieldgroup">
+            <h2>{{restaurant.name}}</h2>
+            <button class="restaurant-details" *ngIf="isOpen(restaurant)"><i></i></button>
+        </div>
+        
+    </div>
+</div>

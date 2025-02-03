@@ -1,0 +1,14 @@
+.layout {
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+}
+
+.filter {
+    width: 25%;
+    min-width: 25%;
+}
+
+.restaurants {
+    width: 70%;
+}

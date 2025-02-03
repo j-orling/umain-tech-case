@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global SCSS variables */
+:root {
+    --white: #FFFFFF;
+    --stroke: #0000001A;
+    --background: #FAFAFA;
+    --black: #000000;
+    --green: #00703A;
+}
+
+/* Imported fonts */
+@font-face {
+font-family: "San Francisco";
+font-weight: 400;
+src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+}
+
+/* Text styling */
+* {
+    font-family: 'San Francisco';
+}
+
+.subtitle {
+    color: #00000099;
+}
+
+/* Global app width */
+body {
+    width: 90%;
+    margin: auto;
+    background-color: var(--background);
+}
