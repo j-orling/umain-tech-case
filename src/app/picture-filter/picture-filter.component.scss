@@ -5,6 +5,7 @@
     overflow-x: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    margin-bottom: 2rem;
 }
 
 .main-container::-webkit-scrollbar {
@@ -22,6 +23,7 @@
 
     h3 {
         margin-left: 1rem;
+        font-weight: normal;
     }
 }
 

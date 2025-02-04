@@ -12,6 +12,7 @@ import { ActiveFilters } from '../interfaces/active-filters';
 })
 export class RestaurantsComponent implements OnDestroy {
   restaurants: Restaurant[] = [];
+  displayedRestaurants: Restaurant[] = [];
   openRestaurants: Restaurant[] = [];
   curFilters: ActiveFilters = {priceRanges: [], filters: [], deliveryTimes: []};
   private filterUpdates: Subscription;
@@ -19,12 +20,19 @@ export class RestaurantsComponent implements OnDestroy {
   unsub = new Subject<void>();
 
   constructor(private service: ServiceService, private fService: FiltersService) {
+    // Restaurants should only need to be loaded once upon init
+    this.service.getRestaurants().subscribe(res => {
+      this.restaurants = res;
+      this.updateRestaurants();
+    });
     this.filterUpdates = this.fService.getUpdates().subscribe(res => {
       this.curFilters = res;
+      this.updateRestaurants();
     });
     this.updateRestaurants();
   }
 
+  // Make sure to unsubscribe on unload
   ngOnDestroy() {
     this.filterUpdates.unsubscribe();
     this.unsub.next();
@@ -32,20 +40,24 @@ export class RestaurantsComponent implements OnDestroy {
   }
 
   updateRestaurants() {
-    // Clear list of open restaurants
+    // Clear list of open restaurants and displayed restaurants
     this.openRestaurants = [];
+    this.displayedRestaurants = [];
 
-    this.service.getRestaurants().subscribe(a => {
-      this.restaurants = a;
-      //this.restaurants = a.filter(res => this.filterResults(res));
+    // If no filters are applied, there's no need to filter the list
+    if(this.curFilters.deliveryTimes.length === 0 && this.curFilters.filters.length === 0 && this.curFilters.priceRanges.length === 0) {
+      this.displayedRestaurants = this.restaurants;
+    }
+    else {
+      this.displayedRestaurants = this.restaurants.filter(res => this.filterResults(res));
+    }
 
-      // Check for and save open restaurants
-      this.restaurants.forEach(r => {
-        this.service.getOpenStatus(r.id).subscribe(b => {
-          if(b) {
-            this.openRestaurants.push(r);
-          }
-        });
+    // Check for and save open restaurants
+    this.restaurants.forEach(r => {
+      this.service.getOpenStatus(r.id).subscribe(b => {
+        if(b) {
+          this.openRestaurants.push(r);
+        }
       });
     });
   }
@@ -58,11 +70,17 @@ export class RestaurantsComponent implements OnDestroy {
   }
 
   filterResults(res: Restaurant) {
+    // Check delivery times and food types separately, to make sure the filters are not affected by one another
     if(
-      res.delivery_time_minutes <= Math.max.apply(this.curFilters.deliveryTimes) &&
-      this.curFilters.filters.some(value => res.filterIds.includes(value.id))
+      (this.curFilters.deliveryTimes.length > 0 &&
+      res.delivery_time_minutes <= Math.max.apply(this.curFilters.deliveryTimes)) || this.curFilters.deliveryTimes.length === 0
     ) {
-      return true;
+      if(
+        (this.curFilters.filters.length > 0 && this.curFilters.filters.some(value => res.filter_ids.includes(value.id))) || 
+        this.curFilters.filters.length === 0
+      ) {
+        return true;
+      }
     }
     return false;
   }

@@ -12,7 +12,6 @@ export class FiltersService {
   constructor() { }
 
   updateRestaurants(filters: ActiveFilters) {
-    console.log("updated");
     this.updateEmit.next(filters);
   }
 
