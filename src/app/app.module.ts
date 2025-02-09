@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from'@angular/common/http';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { PictureFilterComponent } from './picture-filter/picture-filter.component';
+import { MobileFiltersComponent } from './mobile-filters/mobile-filters.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PictureFilterComponent } from './picture-filter/picture-filter.componen
     HomeComponent,
     HeaderComponent,
     RestaurantsComponent,
-    PictureFilterComponent
+    PictureFilterComponent,
+    MobileFiltersComponent
   ],
   imports: [
     BrowserModule,

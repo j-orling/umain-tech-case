@@ -99,4 +99,28 @@ export class FilterComponent implements OnDestroy {
     let upf: ActiveFilters = {filters: this.activeFilters, deliveryTimes: this.activeTimes, priceRanges: this.activeRanges};
     this.updates.updateRestaurants(upf);
   }
+
+  timeActive(time: string): boolean {
+    let val: number = 0;
+    switch (time) {
+      case '0 - 10 min':
+        val = 10;
+        break;
+      case '10 - 30 min':
+        val = 30;
+        break;
+      case '30 - 60 min':
+        val = 60;
+        break;
+      case '1 hour+':
+        val = 99;
+        break;
+    
+      default:
+        break;
+    }
+
+    return this.activeTimes.includes(val);
+  }
+
 }

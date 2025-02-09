@@ -1,5 +1,5 @@
 <div class="main-container">
-    <div *ngFor="let filter of filters" class="filter-banner">
+    <div *ngFor="let filter of filters" (click)="updateFilters(filter)" class="filter-banner" [class.active]="activeFilters.includes(filter)">
         <h3>{{filter.name}}</h3>
         <img src="https://work-test-web-2024-eze6j4scpq-lz.a.run.app/{{filter.image_url}}">
     </div>

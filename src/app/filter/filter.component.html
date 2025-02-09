@@ -8,12 +8,12 @@
 
     <p class="subtitle">DELIVERY TIME</p>
     <div class="filters">
-        <button *ngFor="let time of deliveryTimes">{{time}}</button>
+        <button (click)="updateTimes(time)" [class.active]="timeActive(time)" *ngFor="let time of deliveryTimes">{{time}}</button>
     </div>
 
     <p class="subtitle">PRICE RANGE</p>
     <div class="filters">
-        <button *ngFor="let range of ranges">{{range.range}}</button>
+        <button (click)="updateRanges(range)" [class.active]="this.activeRanges.includes(range)" *ngFor="let range of ranges">{{range.range}}</button>
     </div>
     
 </div>

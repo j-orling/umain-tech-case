@@ -12,3 +12,17 @@
 .restaurants {
     width: 70%;
 }
+
+.mobile-filters {
+    display: none;
+}
+
+@media screen and (max-width: 1100px) {
+    .mobile-filters {
+        display: contents;
+    }
+
+    .filters {
+        display: none;
+    }
+}

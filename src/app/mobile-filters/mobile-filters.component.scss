@@ -1,0 +1,22 @@
+.main-container {
+    height: fit-content;
+    overflow-x: scroll;
+    margin-bottom: 1rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.main-container::-webkit-scrollbar {
+    display: none;
+}
+
+button {
+    background-color: white;
+    padding: 0.5rem;
+    border: 1px solid;
+    border-color: var(--stroke);
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 5px;
+    cursor: pointer;
+}
