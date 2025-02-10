@@ -20,3 +20,8 @@ button {
     margin: 5px;
     cursor: pointer;
 }
+
+.active {
+    border-color: var(--green);
+    background-color: var(--stroke);
+}
