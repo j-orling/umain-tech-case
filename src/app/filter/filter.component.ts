@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { PriceRange } from '../interfaces/price-range';
 import { FiltersService } from 'src/services/filters.service';
 import { ActiveFilters } from '../interfaces/active-filters';
+import { DeliveryTime } from '../interfaces/delivery-time';
 
 @Component({
   selector: 'app-filter',
@@ -14,9 +15,9 @@ import { ActiveFilters } from '../interfaces/active-filters';
 export class FilterComponent implements OnDestroy {
   filters: Filter[] = [];
   ranges: PriceRange[] = [];
-  deliveryTimes: string[] = ['0 - 10 min', '10 - 30 min', '30 - 60 min', '1 hour+'];
+  deliveryTimes: DeliveryTime[] = [];
 
-  activeTimes: number[] = [];
+  activeTimes: DeliveryTime[] = [];
   activeFilters: Filter[] = [];
   activeRanges: PriceRange[] = [];
 
@@ -31,6 +32,8 @@ export class FilterComponent implements OnDestroy {
     this.service.getPriceRanges().subscribe((b => {
       this.ranges = b;
     }));
+
+    this.deliveryTimes = this.updates.deliveryTimeOptions;
   }
 
   // Unsubscribe from all previous subscriptions when component unloads
@@ -63,33 +66,13 @@ export class FilterComponent implements OnDestroy {
     this.updateAll();
   }
 
-  updateTimes(time: string) {
-    // Convert the string to a number we can use for filtering
-    let val: number = 0;
-    switch (time) {
-      case '0 - 10 min':
-        val = 10;
-        break;
-      case '10 - 30 min':
-        val = 30;
-        break;
-      case '30 - 60 min':
-        val = 60;
-        break;
-      case '1 hour+':
-        val = 99;
-        break;
-    
-      default:
-        break;
-    }
-
-    let index: number = this.activeTimes.indexOf(val);
+  updateTimes(time: DeliveryTime) {
+    let index: number = this.activeTimes.indexOf(time);
     if(index > -1) {
       this.activeTimes.splice(index, 1);
     }
     else {
-      this.activeTimes.push(val);
+      this.activeTimes.push(time);
     }
 
     this.updateAll();
@@ -98,29 +81,6 @@ export class FilterComponent implements OnDestroy {
   updateAll() {
     let upf: ActiveFilters = {filters: this.activeFilters, deliveryTimes: this.activeTimes, priceRanges: this.activeRanges};
     this.updates.updateRestaurants(upf);
-  }
-
-  timeActive(time: string): boolean {
-    let val: number = 0;
-    switch (time) {
-      case '0 - 10 min':
-        val = 10;
-        break;
-      case '10 - 30 min':
-        val = 30;
-        break;
-      case '30 - 60 min':
-        val = 60;
-        break;
-      case '1 hour+':
-        val = 99;
-        break;
-    
-      default:
-        break;
-    }
-
-    return this.activeTimes.includes(val);
   }
 
 }

@@ -23,7 +23,6 @@ export class RestaurantsComponent implements OnDestroy {
     // Restaurants should only need to be loaded once upon init
     this.service.getRestaurants().subscribe(res => {
       this.restaurants = res;
-      console.log(res);
       this.updateRestaurants();
     });
     this.filterUpdates = this.fService.getUpdates().subscribe(res => {
@@ -71,10 +70,10 @@ export class RestaurantsComponent implements OnDestroy {
   }
 
   filterResults(res: Restaurant) {
-    // Check delivery times and food types separately, to make sure the filters are not affected by one another
+    // Check all filter types separately, to make sure the filters are not affected by one another
     if(
       (this.curFilters.deliveryTimes.length > 0 &&
-      res.delivery_time_minutes <= this.curFilters.deliveryTimes.reduce((a, b) => Math.max(a, b))) || this.curFilters.deliveryTimes.length === 0
+      res.delivery_time_minutes <= Math.max.apply(Math, this.curFilters.deliveryTimes.map(o => o.minutes))) || this.curFilters.deliveryTimes.length === 0
     ) {
       if(
         (this.curFilters.filters.length > 0 && this.curFilters.filters.some(value => res.filter_ids.includes(value.id))) || 

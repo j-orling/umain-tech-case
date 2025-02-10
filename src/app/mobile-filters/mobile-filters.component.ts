@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ServiceService } from 'src/services/service.service';
-import { Filter } from '../interfaces/filter';
+import { FiltersService } from 'src/services/filters.service';
+import { DeliveryTime } from '../interfaces/delivery-time';
 
 @Component({
   selector: 'app-mobile-filters',
@@ -8,10 +8,27 @@ import { Filter } from '../interfaces/filter';
   styleUrls: ['./mobile-filters.component.scss']
 })
 export class MobileFiltersComponent {
-  deliveryTimes: string[] = ['0 - 10 min', '10 - 30 min', '30 - 60 min', '1 hour+'];
+  activeTimes: DeliveryTime[] = [];
+  deliveryTimes: DeliveryTime[] = [];
 
-  constructor () {
-    
+  constructor (private fService: FiltersService) {
+    this.deliveryTimes = this.fService.deliveryTimeOptions;
+  }
+
+  updateFilters(time: DeliveryTime) {
+    let index: number = this.activeTimes.indexOf(time);
+    if(index > -1) {
+      this.activeTimes.splice(index, 1);
+    }
+    else {
+      this.activeTimes.push(time);
+    }
+
+    this.fService.updateDeliveryTimes(this.activeTimes);
+  }
+
+  timeActive(time: string) {
+
   }
 
 }

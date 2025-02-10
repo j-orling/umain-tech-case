@@ -2,6 +2,6 @@
     <p class="subtitle">DELIVERY TIME</p>
 
     <div class="filters">
-        <button class="filter" *ngFor="let time of deliveryTimes">{{time}}</button>
+        <button (click)="updateFilters(time)" [class.active]="activeTimes.includes(time)" class="filter" *ngFor="let time of deliveryTimes">{{time.label}}</button>
     </div>
 </div>
