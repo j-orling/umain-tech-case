@@ -53,6 +53,14 @@ export class RestaurantsComponent implements OnDestroy {
     }
 
     // Check for and save open restaurants
+    this.getOpen();
+    
+    // Sort restaurants so open ones display first in the list
+    this.restaurants.sort((a, b) => Number(this.openRestaurants.includes(b)) - Number(this.openRestaurants.includes(a)));
+  }
+
+  // Save the open restaurants for easy sorting + DOM construction
+  getOpen() {
     this.restaurants.forEach(r => {
       this.service.getOpenStatus(r.id).subscribe(b => {
         if(b) {

@@ -25,7 +25,13 @@ src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/
 
 /* Global app width */
 body {
-    width: 90%;
+    width: 95%;
     margin: auto;
     background-color: var(--background);
+}
+
+@media screen and (max-width: 555px) {
+    body {
+        width: 99%;
+    }
 }

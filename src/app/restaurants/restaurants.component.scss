@@ -11,9 +11,10 @@
     border-color: var(--stroke);
     border-radius: 10px;
     width: 30%;
-    min-width: fit-content;
+    min-width: 350px;
     height: 12rem;
     overflow: hidden;
+    position: relative;
 
     img {
         margin-top: -30px;
@@ -28,7 +29,11 @@
 
     h2 {
         width: 75%;
+        position: absolute;
+        bottom: 0;
     }
+
+
 }
 
 .quick-info {
@@ -72,6 +77,9 @@
     margin-right: 1rem;
     border: 1px solid var(--green);
     border-radius: 50%;
+    position: absolute;
+    right: 0;
+    bottom: 1rem;
 }
 
 .closed {
@@ -107,5 +115,39 @@ i {
     .restaurant-list {
         flex-direction: column;
         overflow: scroll;
+    }
+}
+
+@media screen and (max-width: 555px) {
+    .restaurant {
+        min-width: 150px;
+        height: fit-content;
+
+        img {
+            height: 100px;
+            margin-top: -20px;
+            margin-right: -25px;
+        }
+
+        h2 {
+            position: inherit;
+            font-size: 18px;
+        }
+
+        p {
+            font-size: 12px;
+        }
+
+        .open-status {
+            height: fit-content;
+        }
+
+        .open-status p {
+            align-self: center;
+        }
+    }
+
+    .restaurant-details {
+        position: inherit;
     }
 }

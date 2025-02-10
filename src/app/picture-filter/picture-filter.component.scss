@@ -35,3 +35,9 @@ img {
     border-color: var(--green);
     background-color: var(--stroke);
 }
+
+@media screen and (max-width: 600px) {
+    img {
+        width: 75px;
+    }
+}
